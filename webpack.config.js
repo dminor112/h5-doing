@@ -1,15 +1,17 @@
 var webpack = require('webpack');
+var devServer = 'webpack-dev-server/client?http://127.0.0.1:3000';
+var devServerCfg = 'webpack/hot/only-dev-server';
 module.exports = {
-    entry:[
-        'webpack-dev-server/client?http://127.0.0.1:3000', // WebpackDevServer host and port
-        'webpack/hot/only-dev-server',
-        //'./scripts/entry' // Your appʼs entry point
-        './assets/js/entry.js'
-    ],
+    entry:
+    {
+        bundle: [devServer, devServerCfg, './assets/js/entry.js'],
+        register: [devServer, devServerCfg, './assets/js/register.js']
+    }
+    ,
     output: {
         path: __dirname + '/assets/',
         publicPath: "/assets/",
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     module: {
         preLoaders: [{
@@ -27,7 +29,10 @@ module.exports = {
         }, {
             test: /\.(css)$/,
             loader: 'style-loader!css-loader'
-        }, {
+        },{
+            test: /\.scss$/,
+            loader: "style!css!sass"
+        },{
             test: /\.(png|jpg)$/,
             loader: 'url-loader?limit=8192'
         }]

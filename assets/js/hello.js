@@ -5,7 +5,7 @@ var React = require('react');
 var Hello = React.createClass({
     render() {
         return (
-            <h1>Hello dfdfasdsad {this.props.name}!</h1>
+            <h1>Hello !ok {this.props.name}!</h1>
         );
     }
 });
