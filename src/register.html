@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <script>
+        (function(){
+            var setFontSize = function () {
+                // 获取window 宽度,动态计算
+                var _self = this;
+                _self.width = 750;   //psd750px宽度 ,default
+                _self.fontSize = 100;//字体大小
+                _self.widthProportion = function () {
+                    var p = ((document.body && document.documentElement.clientWidth || document.getElementsByTagName("html")[0].offsetWidth ) / _self.width );
+                    var px1 = (p * _self.fontSize).toFixed(4);
+                    //console.log("px1 ="+px1);
+                    px1 = px1 > 100 ? 100 : px1;
+                    px1 = px1 < 0.08 ? 0.08 : px1;
+                    return px1;
+                };
+                console.log("html fontSize: ",_self.widthProportion());
+                document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + _self.widthProportion() + "px; !important");
+            };
+            // init 初始化
+            setFontSize();
+            //手机改变状态时也执行该方法
+            var _evt = 'onorientationchange' in window ? 'orientationchange' : 'resize';
+            var _timer = null;
+            //android,win系列
+            window.addEventListener(_evt, function () {
+                clearTimeout(_timer);
+                _timer = setTimeout(setFontSize, 300);
+            }, false);
+            //ios系列
+            window.addEventListener("pageshow", function(e) {
+                if (e.persisted) {
+                    clearTimeout(_timer);
+                    _timer = setTimeout(setFontSize, 300);
+                }
+            }, false);
+        }());
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/register.css">
+</head>
+<body>
+<!--<div id="main-con" class="main-con"></div>-->
+<section id="main-con" class="main-con">
+    <div class="sex-con">
+        <div class="title">性别选择</div>
+        <div class="middle">
+            <div class="content">
+                <a class="male js-sex"><img src="./img/head.png"/></a>
+                <a class="female js-sex"><img src="./img/head.png"/></a>
+            </div>
+        </div>
+        <div class="bottom">完成</div>
+    </div>
+    <div class="detail-con">
+        <div class="title">注册</div>
+        <div class="middle">
+            <div class="picture">
+                <form id="userInfo">
+                    <a class="picture js-picture"><img src="./img/head.png"/></a>
+                    <input type="file" name="imgFile" id="img-file" style="display:none">
+                    <input type="text" name="data" class="js-data" style="display:none">
+                    <div class="tip">已经帮您挑选了头像和昵称</div>
+                </form>
+            </div>
+            <div class="detail">
+                <div class="detail-item"><span class="header">昵称</span><input class="js-nickName" type="text" placeholder="请输入昵称"></div>
+                <div class="detail-item"><span class="header">年龄</span><input class="js-age" type="text" placeholder="请输入年龄"></div>
+                <div class="detail-item"><span class="header">职业</span><input class="js-occupation" type="text" placeholder="请输入职业"></div>
+            </div>
+        </div>
+        <div class="bottom">完成</div>
+    </div>
+</section>
+</body>
+<script src="http://127.0.0.1/front/h5-doing/src/js/lib/sea.js"></script>
+<script src="http://127.0.0.1/front/h5-doing/src/js/lib/jquery.js"></script>
+<script src="http://127.0.0.1/front/h5-doing/src/js/lib/jquery.form.3.46.0.js"></script>
+<script>
+    var meta = {
+        map: [
+            ['.css', '.css?v=1.0.2'],
+            ['.js', '.js?v=1.0.2']
+        ],
+        vars: {
+            'path': window.SEA_PATH||""
+        },
+        debug: false,
+        base:   window.SEA_PATH || './js/',
+        alias:  window.SEA_MODULES ||{},
+        // 文件编码
+        charset: 'utf-8'
+    };
+    seajs.config( meta );
+    seajs.use('./js/register.js', function (register) {
+        register.init();
+    });
+
+</script>
+</html>

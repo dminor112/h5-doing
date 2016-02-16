@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <script>
+        (function(){
+            var setFontSize = function () {
+                // 获取window 宽度,动态计算
+                var _self = this;
+                _self.width = 750;   //psd750px宽度 ,default
+                _self.fontSize = 100;//字体大小
+                _self.widthProportion = function () {
+                    var p = ((document.body && document.documentElement.clientWidth || document.getElementsByTagName("html")[0].offsetWidth ) / _self.width );
+                    var px1 = (p * _self.fontSize).toFixed(4);
+                    //console.log("px1 ="+px1);
+                    px1 = px1 > 100 ? 100 : px1;
+                    px1 = px1 < 0.08 ? 0.08 : px1;
+                    return px1;
+                };
+                console.log("html fontSize: ",_self.widthProportion());
+                document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + _self.widthProportion() + "px; !important");
+            };
+            // init 初始化
+            setFontSize();
+            //手机改变状态时也执行该方法
+            var _evt = 'onorientationchange' in window ? 'orientationchange' : 'resize';
+            var _timer = null;
+            //android,win系列
+            window.addEventListener(_evt, function () {
+                clearTimeout(_timer);
+                _timer = setTimeout(setFontSize, 300);
+            }, false);
+            //ios系列
+            window.addEventListener("pageshow", function(e) {
+                if (e.persisted) {
+                    clearTimeout(_timer);
+                    _timer = setTimeout(setFontSize, 300);
+                }
+            }, false);
+        }());
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body>
+<!--<div id="main-con" class="main-con"></div>-->
+<section id="main-con" class="main-con">
+    <div class="doing-con">
+        <div class="title">在干吗</div>
+        <div class="middle">
+            <div class="doing-item">
+                <div class="user">
+                    <img class="user-icon" src=""/>
+                    <div class="user-detail">
+                        <div class="u-name">爱笑的酒窝</div>
+                        <div class="u-occupation">大学生</div>
+                        <div class="u-age">23</div>
+                        <div class="pub-time">刚刚</div>
+                    </div>
+                </div>
+                <div class="doing">
+                    <div class="content">我正在哈哈哈哈</div>
+                    <div class="picture">
+                        <img src="http://photocdn.sohu.com/tvmobilemvms/20160212/145523776584442209_hor_small.jpg"/>
+                    </div>
+                    <div class="doing-bottom">
+                        <div class="position">朝阳区</div>
+                        <div class="comment-count">23</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div>btn1</div>
+            <div>btn2</div>
+            <div>btn3</div>
+        </div>
+    </div>
+</section>
+</body>
+<script src="http://127.0.0.1/front/h5-doing/src/js/lib/sea.js"></script>
+<script src="http://127.0.0.1/front/h5-doing/src/js/lib/jquery.js"></script>
+<script>
+    var meta = {
+        map: [
+            ['.css', '.css?v=1.0.2'],
+            ['.js', '.js?v=1.0.2']
+        ],
+        vars: {
+            'path': window.SEA_PATH||""
+        },
+        debug: false,
+        base:   window.SEA_PATH || './js/',
+        alias:  window.SEA_MODULES ||{},
+        // 文件编码
+        charset: 'utf-8'
+    };
+    seajs.config( meta );
+    seajs.use('./js/index.js', function (index) {
+        index.init();
+    });
+
+</script>
+</html>
