@@ -59,7 +59,7 @@ define(function(require, exports, module){
             html += '</div>';
             html += '<div class="doing-bottom">';
             html += '<div class="position">' + doingObj.position + '</div>';
-            html += '<div class="comment-count">' + doingObj.commentCount + '</div>';
+            html += '<div class="comment-count">评论数： ' + doingObj.commentCount + '</div>';
             html += '</div></div></a></div>';
         }
         $('.doing-con .middle').html(html);
