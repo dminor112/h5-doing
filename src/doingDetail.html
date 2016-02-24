@@ -72,11 +72,38 @@
                     </div>
                 </div>
             </div>
+            <div class="comment-list">
+                <div>共13条回复</div>
+                <div class="comment-item">
+                    <div class="user">
+                        <img class="user-icon" src=""/>
+                        <div class="u-name">昌平林俊杰</div>
+                        <div class="u-occupation">大学生</div>
+                        <div class="u-age">18岁</div>
+                        <div class="pub-time">刚刚</div>
+                    </div>
+                    <div class="comment-content">
+                        你真好啊，呀呀呀。
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <div class="user">
+                        <img class="user-icon" src=""/>
+                        <div class="u-name">昌平林俊杰</div>
+                        <div class="u-occupation">老师</div>
+                        <div class="u-age">18岁</div>
+                        <div class="pub-time">刚刚</div>
+                    </div>
+                    <div class="comment-content">
+                        你真好啊，呀呀呀。
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="bottom">
-            <div>btn1</div>
-            <div>btn2</div>
-            <div>btn3</div>
+            <div class="comment-input-con">
+                <input id="comment-input" type="text"><a class="comment-btn">回复</a>
+            </div>
         </div>
     </div>
 </section>
@@ -99,8 +126,8 @@
         charset: 'utf-8'
     };
     seajs.config( meta );
-    seajs.use('./js/index.js', function (index) {
-        index.init();
+    seajs.use('./js/doingDetail.js', function (doingDetail) {
+        doingDetail.init();
     });
 
 </script>
